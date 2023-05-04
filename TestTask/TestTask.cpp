@@ -139,9 +139,16 @@ void EnumerationsOfAllFiles()
 // Part #3
 void CollectingInformation()
 {
-    char buffer[256];
-    DWORD size = 256;
-    GetUserNameA(buffer, &size);
+    //
+    char username[256];
+    char pcName[256];
 
-    cout << buffer << endl;
+    DWORD sizeUsername = 256;
+    DWORD sizePcName = 256;
+
+    //
+    GetUserNameA(username, &sizeUsername);
+    GetComputerNameA(pcName, &sizePcName);
+
+    cout << username << pcName << endl;
 }
