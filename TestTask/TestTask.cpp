@@ -145,9 +145,9 @@ void EnumeratingLocalDisks()
 // --- Part #2 ---
 void EnumerationsOfAllFiles()
 {
-    WIN32_FIND_DATAW wfd;
+    WIN32_FIND_DATAW data;
 
-    HANDLE const hFind = FindFirstFileW(L"C:\\*", &wfd);
+    HANDLE const hFind = FindFirstFileW(L"C:\\*", &data);
 
     setlocale(LC_ALL, "rus");
 
@@ -155,16 +155,30 @@ void EnumerationsOfAllFiles()
     {
         do
         {
-            if (wfd.cFileName[0] != '.' && wfd.cFileName[0] != '..')
+            if (data.cFileName[0] != '.' && data.cFileName[0] != '..')
             {
                 SYSTEMTIME time;
 
-                FileTimeToSystemTime(&wfd.ftCreationTime, &time);
+                FileTimeToSystemTime(&data.ftCreationTime, &time);
+
+                // Begin Colhoz
+                char s[1]{ 'N' };
+
+                if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+                    s[0] = 'D';
+                if (data.dwFileAttributes & FILE_ATTRIBUTE_ARCHIVE)
+                    s[0] = 'A';
+                if (data.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
+                    s[0] = 'R';
+                if (data.dwFileAttributes & FILE_ATTRIBUTE_NOT_CONTENT_INDEXED)
+                    s[0] = 'I';
+
+                // End Coloz
 
                 //
-                std::wcout << &wfd.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << std::endl;
+                std::wcout << &data.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << "\t" << s[0] << std::endl;
             }
-        } while (0 != FindNextFileW(hFind, &wfd));
+        } while (0 != FindNextFileW(hFind, &data));
 
         FindClose(hFind);
     }
