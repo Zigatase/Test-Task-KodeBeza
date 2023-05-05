@@ -1,6 +1,5 @@
 ﻿#include "Include.h"
 
-using namespace std;
 
 //
 class GetLocalDrive
@@ -32,11 +31,11 @@ public:
         do
         {
             if (i == 0)
-                cout << LogicalDisks << endl;
+                std::cout << LogicalDisks << std::endl;
 
             if (LogicalDisks[i] == 0)
             {
-                cout << LogicalDisks + i + 1 << endl;
+                std::cout << LogicalDisks + i + 1 << std::endl;
             }
 
             i += 1;
@@ -45,23 +44,29 @@ public:
 
 };
 
+
 //
 void EnumeratingLocalDisks();
 void EnumerationsOfAllFiles();
 void CollectingInformation();
 
-//
+
+// --- Main ---
 int main()
 {
-    CollectingInformation();
+    EnumerationsOfAllFiles();
+
+    system("pause");
 
     return 0;
 }
 
 
-// Part #1
+// --- Part #1 ---
 void EnumeratingLocalDisks()
 {
+    setlocale(LC_ALL, "rus");
+
     //
     char LogicalDisks[512];
     char LogicalDisksName[512];
@@ -96,7 +101,15 @@ void EnumeratingLocalDisks()
                 sizeof(SystemNet)
             );
 
-            cout << LogicalDisks << LogicalDisksName << endl;
+            // Getting the volume size in bytes
+            BOOL Get = GetDiskFreeSpaceExA(
+                LogicalDisks,
+                NULL,
+                (PULARGE_INTEGER)&lpTotalNumberOfBytes,
+                (PULARGE_INTEGER)&lpTotalNumberOfFreeBytes
+            );
+
+            std::cout << LogicalDisks << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << std::endl;
         }
 
         if (LogicalDisks[i] == 0)
@@ -115,13 +128,13 @@ void EnumeratingLocalDisks()
 
             // Getting the volume size in bytes
             BOOL Get = GetDiskFreeSpaceExA(
-                LogicalDisks,
+                LogicalDisks + i + 1,
                 NULL,
                 (PULARGE_INTEGER)&lpTotalNumberOfBytes,
                 (PULARGE_INTEGER)&lpTotalNumberOfFreeBytes
             );
 
-            cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << endl;
+            std::cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << std::endl;
         }
 
         i += 1;
@@ -129,14 +142,37 @@ void EnumeratingLocalDisks()
 }
 
 
-// Part #2
+// --- Part #2 ---
 void EnumerationsOfAllFiles()
 {
+    WIN32_FIND_DATAW wfd;
+
+    HANDLE const hFind = FindFirstFileW(L"C:\\*", &wfd);
+
+    setlocale(LC_ALL, "rus");
+
+    if (INVALID_HANDLE_VALUE != hFind)
+    {
+        do
+        {
+            if (wfd.cFileName[0] != '.' && wfd.cFileName[0] != '..')
+            {
+                SYSTEMTIME time;
+
+                FileTimeToSystemTime(&wfd.ftCreationTime, &time);
+
+                //
+                std::wcout << &wfd.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << std::endl;
+            }
+        } while (0 != FindNextFileW(hFind, &wfd));
+
+        FindClose(hFind);
+    }
 
 }
 
 
-// Part #3
+// --- Part #3 ---
 void CollectingInformation()
 {
     //
@@ -150,5 +186,5 @@ void CollectingInformation()
     GetUserNameA(username, &sizeUsername);
     GetComputerNameA(pcName, &sizePcName);
 
-    cout << username << pcName << endl;
+    std::cout << username << "\t" << pcName << std::endl;
 }
