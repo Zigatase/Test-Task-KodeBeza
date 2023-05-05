@@ -153,6 +153,9 @@ void EnumerationsOfAllFiles()
 
     if (INVALID_HANDLE_VALUE != hFind)
     {
+        int totalDir{ 0 };
+        int totalFile{ 0 };
+
         do
         {
             if (data.cFileName[0] != '.' && data.cFileName[0] != '..')
@@ -164,14 +167,29 @@ void EnumerationsOfAllFiles()
                 // Begin Colhoz
                 char s[1]{ 'N' };
 
-                if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-                    s[0] = 'D';
-                if (data.dwFileAttributes & FILE_ATTRIBUTE_ARCHIVE)
-                    s[0] = 'A';
                 if (data.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
+                {
                     s[0] = 'R';
+                    totalFile++;
+                }
+
+                // if (data.dwFileAttributes == 16)
+                if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+                {
+                    s[0] = 'D';
+                    totalDir++;
+                }
+
+                if (data.dwFileAttributes & FILE_ATTRIBUTE_ARCHIVE)
+                {
+                    s[0] = 'A';
+                    totalFile++;
+                }
+
                 if (data.dwFileAttributes & FILE_ATTRIBUTE_NOT_CONTENT_INDEXED)
+                {
                     s[0] = 'I';
+                }
 
                 // End Coloz
 
@@ -179,6 +197,8 @@ void EnumerationsOfAllFiles()
                 std::wcout << &data.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << "\t" << s[0] << std::endl;
             }
         } while (0 != FindNextFileW(hFind, &data));
+
+        std::cout << totalDir << "\t" << totalFile << std::endl;
 
         FindClose(hFind);
     }
