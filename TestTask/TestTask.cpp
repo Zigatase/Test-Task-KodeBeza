@@ -147,7 +147,7 @@ void EnumerationsOfAllFiles()
 {
     WIN32_FIND_DATAW data;
 
-    HANDLE const hFind = FindFirstFileW(L"C:\\*", &data);
+    HANDLE const hFind = FindFirstFileW(L"C:\\Program Files\\Git\\*", &data);
 
     setlocale(LC_ALL, "rus");
 
@@ -167,30 +167,59 @@ void EnumerationsOfAllFiles()
                 // Begin Colhoz
                 char s[1]{ 'N' };
 
-                if (data.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
-                {
-                    s[0] = 'R';
-                    totalFile++;
-                }
 
-                // if (data.dwFileAttributes == 16)
-                if (data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+                /*
+                * 22 8210 18 9238 17 8214
+                * if (data.dwFileAttributes == 16)
+                */
+
+                if (data.dwFileAttributes == 16)
                 {
                     s[0] = 'D';
                     totalDir++;
                 }
 
-                if (data.dwFileAttributes & FILE_ATTRIBUTE_ARCHIVE)
+                // Расширение BIN – это образ диска CD или DVD, хранит двоичные данные, скопированные с компакт-диска или DVD.
+                else if (data.dwFileAttributes == 22)
                 {
-                    s[0] = 'A';
+                    s[0] = 'С';
+                }
+
+                else if (data.dwFileAttributes == 8210)
+                {
+                    s[0] = 'D';
+                    totalDir++;
+                }
+
+                else if (data.dwFileAttributes == 18)
+                {
+                    s[0] = 'D';
+                    totalDir++;
+                }
+
+                else if (data.dwFileAttributes == 9238)
+                {
+                    s[0] = 'D';
+                    totalDir++;
+                }
+
+                else if (data.dwFileAttributes == 17)
+                {
+                    s[0] = 'D';
+                    totalDir++;
+                }
+
+                else if (data.dwFileAttributes == 8214)
+                {
+                    s[0] = 'D';
+                    totalDir++;
+                }
+
+                else 
+                {
+                    s[0] = 'F';
                     totalFile++;
                 }
-
-                if (data.dwFileAttributes & FILE_ATTRIBUTE_NOT_CONTENT_INDEXED)
-                {
-                    s[0] = 'I';
-                }
-
                 // End Coloz
 
                 //
