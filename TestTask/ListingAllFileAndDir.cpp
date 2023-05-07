@@ -1,8 +1,8 @@
-#include "ListingAllFiles.h"
+#include "ListingAllFileAndDir.h"
 
 
 // --- Part #2 ---
-void EnumerationsOfAllFiles()
+void ListingAllFileAndDir()
 {
     WIN32_FIND_DATAW data;
 
@@ -28,7 +28,7 @@ void EnumerationsOfAllFiles()
 
 
                 /*
-                * 22 8210 18 9238 17 8214
+                * 22 8210 18 9238 17 8214 | Dir Int
                 * if (data.dwFileAttributes == 16)
                 */
 

@@ -7,7 +7,7 @@
 #include <Windows.h>
 
 //
-#include "ListingAllFiles.h"
+#include "ListingAllFileAndDir.h"
 #include "EnumeratingLocalDisks.h"
 #include "CollectingInformation.h"
 

@@ -12,9 +12,6 @@ void EnumeratingLocalDisks()
     char SystemNet[512];
 
     //
-    DWORD Num;
-
-    //
     unsigned long long lpTotalNumberOfBytes;
     unsigned long long lpTotalNumberOfFreeBytes;
 
@@ -33,7 +30,7 @@ void EnumeratingLocalDisks()
                 LogicalDisks,
                 LogicalDisksName,
                 sizeof(LogicalDisksName),
-                &Num,
+                NULL,
                 NULL,
                 NULL,
                 SystemNet,
@@ -58,7 +55,7 @@ void EnumeratingLocalDisks()
                 LogicalDisks + i + 1,
                 LogicalDisksName,
                 sizeof(LogicalDisksName),
-                &Num,
+                NULL,
                 NULL,
                 NULL,
                 SystemNet,

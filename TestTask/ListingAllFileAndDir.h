@@ -10,4 +10,4 @@ class ListingAllFiles
 
 
 //
-void EnumerationsOfAllFiles();
+void ListingAllFileAndDir();

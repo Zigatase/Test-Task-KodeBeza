@@ -133,14 +133,14 @@
   <ItemGroup>
     <ClCompile Include="CollectingInformation.cpp" />
     <ClCompile Include="EnumeratingLocalDisks.cpp" />
-    <ClCompile Include="ListingAllFiles.cpp" />
+    <ClCompile Include="ListingAllFileAndDir.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollectingInformation.h" />
     <ClInclude Include="EnumeratingLocalDisks.h" />
     <ClInclude Include="Include.h" />
-    <ClInclude Include="ListingAllFiles.h" />
+    <ClInclude Include="ListingAllFileAndDir.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
