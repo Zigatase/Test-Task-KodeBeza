@@ -12,17 +12,13 @@ std::vector<std::string> EnumeratingLocalDisks()
 
     std::vector<std::string> err{ "ERROR" };
 
-    //
     char LogicalDisks[512];
     char LogicalDisksName[512];
     char SystemNet[512];
 
-    //
     unsigned long long lpTotalNumberOfBytes;
     unsigned long long lpTotalNumberOfFreeBytes;
 
-
-    //
     DWORD LogicalDisksLen{ GetLogicalDriveStringsA(sizeof(LogicalDisks), LogicalDisks) };
 
 

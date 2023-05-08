@@ -23,15 +23,9 @@ void ListingAllFileAndDir(const wchar_t path[5])
 
                 FileTimeToSystemTime(&data.ftCreationTime, &time);
 
-                // Begin Colhoz
                 std::string s = "None";
 
-
-                /*
-                * 22 8210 18 9238 17 8214 | Dir Int
-                * if (data.dwFileAttributes == 16)
-                */
-
+                
                 if (data.dwFileAttributes == 16)
                 {
                     s = "DIR";
@@ -79,7 +73,6 @@ void ListingAllFileAndDir(const wchar_t path[5])
                     s = "FILE";
                     totalFile++;
                 }
-                // End Coloz
 
                 //
                 std::wcout << &data.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << "\t" << std::wstring(s.begin(), s.end()) << std::endl;
