@@ -2,7 +2,7 @@
 
 
 // --- Task #1 ---
-std::vector<std::string> EnumeratingLocalDisks()
+std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 {
     setlocale(LC_ALL, "rus");
 
@@ -60,7 +60,8 @@ std::vector<std::string> EnumeratingLocalDisks()
             }
 
             // DBG std::cout << LogicalDisks << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
-            std::cout << LogicalDisks << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
+            if (Cout)
+                std::cout << LogicalDisks << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
 
 
             Disk.push_back(LogicalDisks);
@@ -104,7 +105,8 @@ std::vector<std::string> EnumeratingLocalDisks()
 
 
             // DBG std::cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
-            std::cout << LogicalDisks + i + 1 << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
+            if (Cout)
+                std::cout << LogicalDisks + i + 1 << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
 
 
             Disk.push_back(LogicalDisks + i + 1);

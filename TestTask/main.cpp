@@ -33,7 +33,7 @@ int main()
 
         else if (command == "1")
         {
-            EnumeratingLocalDisks();
+            EnumeratingLocalDisks(TRUE);
         }
 
         else if (command == "2")

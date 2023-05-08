@@ -7,7 +7,7 @@ void ListingAllFileAndDir()
 {
     setlocale(LC_ALL, "rus");
 
-    std::vector<std::string> PathDir{ EnumeratingLocalDisks() };
+    std::vector<std::string> PathDir{ EnumeratingLocalDisks(FALSE) };
 
 
     //

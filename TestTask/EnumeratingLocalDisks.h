@@ -7,7 +7,7 @@
 
 
 //
-std::vector<std::string> EnumeratingLocalDisks();
+std::vector<std::string> EnumeratingLocalDisks(BOOL Cout = TRUE);
 
 
 //
