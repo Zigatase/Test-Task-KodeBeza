@@ -2,10 +2,11 @@
 
 //
 #include "Include.h"
+#include <vector>
 
 
 //
-void EnumeratingLocalDisks();
+std::vector<std::string> EnumeratingLocalDisks();
 
 
 //

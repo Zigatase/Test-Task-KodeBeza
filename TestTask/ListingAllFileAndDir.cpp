@@ -24,7 +24,7 @@ void ListingAllFileAndDir()
                 FileTimeToSystemTime(&data.ftCreationTime, &time);
 
                 // Begin Colhoz
-                char s[1]{ 'N' };
+                std::string s = "None";
 
 
                 /*
@@ -34,59 +34,59 @@ void ListingAllFileAndDir()
 
                 if (data.dwFileAttributes == 16)
                 {
-                    s[0] = 'D';
+                    s = "DIR";
                     totalDir++;
                 }
 
                 // Расширение BIN – это образ диска CD или DVD, хранит двоичные данные, скопированные с компакт-диска или DVD.
                 else if (data.dwFileAttributes == 22)
                 {
-                    s[0] = 'С';
+                    s = "CD and DVD";
                 }
 
                 else if (data.dwFileAttributes == 8210)
                 {
-                    s[0] = 'D';
+                    s = "DIR";
                     totalDir++;
                 }
 
                 else if (data.dwFileAttributes == 18)
                 {
-                    s[0] = 'D';
+                    s = "DIR";
                     totalDir++;
                 }
 
                 else if (data.dwFileAttributes == 9238)
                 {
-                    s[0] = 'D';
+                    s = "DIR";
                     totalDir++;
                 }
 
                 else if (data.dwFileAttributes == 17)
                 {
-                    s[0] = 'D';
+                    s = "DIR";
                     totalDir++;
                 }
 
                 else if (data.dwFileAttributes == 8214)
                 {
-                    s[0] = 'D';
+                    s = "DIR";
                     totalDir++;
                 }
 
                 else
                 {
-                    s[0] = 'F';
+                    s = "FILE";
                     totalFile++;
                 }
                 // End Coloz
 
                 //
-                std::wcout << &data.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << "\t" << s[0] << std::endl;
+                std::wcout << &data.cFileName[0] << "\t" << time.wYear << "\\" << time.wMonth << "\\" << time.wDay << "\t" << time.wHour + 3 << ":" << time.wMinute << "\t" << std::wstring(s.begin(), s.end()) << std::endl;
             }
-        } while (0 != FindNextFileW(hFind, &data));
+        } while (FindNextFileW(hFind, &data) != 0);
 
-        std::cout << totalDir << "\t" << totalFile << std::endl;
+        std::cout << "\nTotal of folders: " << totalDir << "\t" << "Total of files: " << totalFile << std::endl;
 
         FindClose(hFind);
     }

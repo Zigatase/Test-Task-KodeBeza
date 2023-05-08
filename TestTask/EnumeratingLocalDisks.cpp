@@ -2,9 +2,13 @@
 
 
 // --- Task #1 ---
-void EnumeratingLocalDisks()
+std::vector<std::string> EnumeratingLocalDisks()
 {
     setlocale(LC_ALL, "rus");
+
+    std::vector<std::string> Disk;
+    std::vector<std::string> SysNet;
+    std::vector<unsigned long long> Total;
 
     //
     char LogicalDisks[512];
@@ -45,7 +49,13 @@ void EnumeratingLocalDisks()
                 (PULARGE_INTEGER)&lpTotalNumberOfFreeBytes
             );
 
-            std::cout << LogicalDisks << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
+            // DBG std::cout << LogicalDisks << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
+            std::cout << LogicalDisks << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
+
+
+            Disk.push_back(LogicalDisks);
+            SysNet.push_back(SystemNet);
+            Total.push_back(lpTotalNumberOfBytes);
         }
 
         if (LogicalDisks[i] == 0)
@@ -70,9 +80,17 @@ void EnumeratingLocalDisks()
                 (PULARGE_INTEGER)&lpTotalNumberOfFreeBytes
             );
 
-            std::cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
+            // DBG std::cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
+            std::cout << LogicalDisks + i + 1 << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
+
+
+            Disk.push_back(LogicalDisks + i + 1);
+            SysNet.push_back(SystemNet);
+            Total.push_back(lpTotalNumberOfBytes);
         }
 
         i += 1;
     } while (i < LogicalDisksLen - 2);
+
+    return Disk;
 }
