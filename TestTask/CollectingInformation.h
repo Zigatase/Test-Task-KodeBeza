@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef COLLECTINGINFORMATION_H
+#define COLLECTINGINFORMATION_H
 
 //
 #include "Include.h"
@@ -15,3 +15,4 @@ class CollectingInformation
 {
 };
 
+#endif // COLLECTINGINFORMATION_H

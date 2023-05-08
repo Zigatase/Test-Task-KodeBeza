@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENUMERATINGLOCALDISKS_H
+#define ENUMERATINGLOCALDISKS_H
 
 //
 #include "Include.h"
@@ -14,4 +15,4 @@ class EnumeratingLocalDisks
 {
 };
 
-
+#endif

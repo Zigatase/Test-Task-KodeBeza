@@ -19,10 +19,10 @@ void CollectingInformation()
     GetUserNameW(username, &sizeUsername);
     GetComputerNameW(pcName, &sizePcName);
     
-    printf("User: %S | Pc Name: %S\n\n", username, pcName);
+    printf("UserName: %S | PC Name: %S\n\n", username, pcName);
 
 
-    //
+    // Local Gr.
     printf("Local groups: \n");
 
     NetUserGetLocalGroups(NULL, username, 0, LG_INCLUDE_INDIRECT, &buffer, MAX_PREFERRED_LENGTH, &entries, &total_entries);
@@ -32,7 +32,8 @@ void CollectingInformation()
         printf("\t%S\n", groups[i].lgrui0_name);
     NetApiBufferFree(buffer);
 
-    //
+
+    // Global Gr.
     std::cout << "\nGlobals Groups:\n" << std::endl;
 
     NetUserGetGroups(NULL, username, 0, &buffer, MAX_PREFERRED_LENGTH, &entries, &total_entries);
@@ -41,6 +42,4 @@ void CollectingInformation()
     for (int i = 0; i < entries; i++)
         printf("\t%S\n", ggroups[i].grui0_name);
     NetApiBufferFree(buffer);
-
 }
-
