@@ -61,7 +61,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 
             // DBG std::cout << LogicalDisks << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
             if (Cout)
-                std::cout << LogicalDisks << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
+                std::cout << "\t" << LogicalDisks << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
 
 
             Disk.push_back(LogicalDisks);
@@ -106,7 +106,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 
             // DBG std::cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
             if (Cout)
-                std::cout << LogicalDisks + i + 1 << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
+                std::cout << "\t" << LogicalDisks + i + 1 << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
 
 
             Disk.push_back(LogicalDisks + i + 1);

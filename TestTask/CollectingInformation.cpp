@@ -18,12 +18,14 @@ void CollectingInformation()
     //
     GetUserNameW(username, &sizeUsername);
     GetComputerNameW(pcName, &sizePcName);
+
+    printf("--- User, PC Info:");
     
-    printf("UserName: %S | PC Name: %S\n\n", username, pcName);
+    printf("\n\tUserName: %S | PC Name: %S\n\n", username, pcName);
 
 
     // Local Gr.
-    printf("Local groups: \n");
+    printf("--- Local groups: \n");
 
     NetUserGetLocalGroups(NULL, username, 0, LG_INCLUDE_INDIRECT, &buffer, MAX_PREFERRED_LENGTH, &entries, &total_entries);
 
@@ -34,7 +36,7 @@ void CollectingInformation()
 
 
     // Global Gr.
-    std::cout << "\nGlobals Groups:\n" << std::endl;
+    printf("\n--- Globals Groups: \n");
 
     NetUserGetGroups(NULL, username, 0, &buffer, MAX_PREFERRED_LENGTH, &entries, &total_entries);
 
