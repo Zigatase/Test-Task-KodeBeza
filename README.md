@@ -6,7 +6,7 @@ C = ISO C17 (2018)
 
 A set of tools VS 2019 (v142)
 
-
+![Image alt](https://github.com/Zigatase/TestTaskKodeBeza/blob/master/image.png)
 
 # Task 1-3
 
