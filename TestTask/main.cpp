@@ -38,7 +38,7 @@ int main()
 
         else if (command == "2")
         {
-            ListingAllFileAndDir(L"P:\\*");
+            ListingAllFileAndDir();
         }
 
         else if (command == "3")
