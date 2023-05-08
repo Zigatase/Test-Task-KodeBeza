@@ -2,11 +2,11 @@
 
 
 // --- Part #2 ---
-void ListingAllFileAndDir()
+void ListingAllFileAndDir(const wchar_t path[5])
 {
     WIN32_FIND_DATAW data;
 
-    HANDLE const hFind = FindFirstFileW(L"C:\\*", &data);
+    HANDLE const hFind = FindFirstFileW(path, &data);
 
     setlocale(LC_ALL, "rus");
 

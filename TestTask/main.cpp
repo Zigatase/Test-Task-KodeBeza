@@ -10,7 +10,7 @@ int main()
 
     while (true)
     {
-        std::cout << "Command -> ";
+        std::cout << "\nCommand -> \n";
         std::getline(std::cin, command);
 
         if (command == "/help")
@@ -38,7 +38,7 @@ int main()
 
         else if (command == "2")
         {
-            ListingAllFileAndDir();
+            ListingAllFileAndDir(L"P:\\*");
         }
 
         else if (command == "3")

@@ -13,4 +13,4 @@ class ListingAllFiles
 
 
 //
-void ListingAllFileAndDir();
+void ListingAllFileAndDir(const wchar_t path[5]);
