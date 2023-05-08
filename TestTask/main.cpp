@@ -10,7 +10,7 @@ int main()
 
     while (true)
     {
-        std::cout << "\nCommand -> \n";
+        std::cout << "\nCommand -> ";
         std::getline(std::cin, command);
 
         if (command == "/help")
@@ -53,7 +53,7 @@ int main()
 
         else
         {
-            std::cout << "Enter correct Command" << std::endl;
+            std::cout << "Enter the correct command!" << std::endl;
         }
     }
 

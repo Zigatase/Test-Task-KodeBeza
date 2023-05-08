@@ -10,6 +10,8 @@ std::vector<std::string> EnumeratingLocalDisks()
     std::vector<std::string> SysNet;
     std::vector<unsigned long long> Total;
 
+    std::vector<std::string> err{ "ERROR" };
+
     //
     char LogicalDisks[512];
     char LogicalDisksName[512];
@@ -41,6 +43,12 @@ std::vector<std::string> EnumeratingLocalDisks()
                 sizeof(SystemNet)
             );
 
+            if (GetInfoDisk == FALSE)
+            {
+                std::cerr << "ERROR -> Failed to get disk information" << std::endl;
+                return err;
+            }
+
             // Getting the volume size in bytes
             BOOL GetDiskFreeSpace = GetDiskFreeSpaceExA(
                 LogicalDisks,
@@ -48,6 +56,12 @@ std::vector<std::string> EnumeratingLocalDisks()
                 (PULARGE_INTEGER)&lpTotalNumberOfBytes,
                 (PULARGE_INTEGER)&lpTotalNumberOfFreeBytes
             );
+
+            if (GetDiskFreeSpace == FALSE)
+            {
+                std::cerr << "ERROR -> Failed to get disk size information" << std::endl;
+                return err;
+            }
 
             // DBG std::cout << LogicalDisks << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
             std::cout << LogicalDisks << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes  << " Bytes" << std::endl;
@@ -72,13 +86,26 @@ std::vector<std::string> EnumeratingLocalDisks()
                 sizeof(SystemNet)
             );
 
+            if (GetVoluInfoDisk == FALSE)
+            {
+                std::cerr << "ERROR -> Failed to get disk information" << std::endl;
+                return err;
+            }                
+
             // Getting the volume size in bytes
-            BOOL Get = GetDiskFreeSpaceExA(
+            BOOL GetDiskFree = GetDiskFreeSpaceExA(
                 LogicalDisks + i + 1,
                 NULL,
                 (PULARGE_INTEGER)&lpTotalNumberOfBytes,
                 (PULARGE_INTEGER)&lpTotalNumberOfFreeBytes
             );
+
+            if (GetDiskFree == FALSE)
+            {
+                std::cerr << "ERROR -> Failed to get disk size information" << std::endl;
+                return err;
+            }  
+
 
             // DBG std::cout << LogicalDisks + i + 1 << LogicalDisksName << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
             std::cout << LogicalDisks + i + 1 << "\t" << SystemNet << "\t" << lpTotalNumberOfBytes << " Bytes" << std::endl;
