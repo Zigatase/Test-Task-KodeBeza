@@ -1,8 +1,6 @@
 #include "ListingAllFileAndDir.h"
 
-#include <vector>
 
-// --- Part #2 ---
 void ListingAllFileAndDir()
 {
     setlocale(LC_ALL, "rus");
@@ -10,10 +8,9 @@ void ListingAllFileAndDir()
     std::vector<std::string> PathDir{ EnumeratingLocalDisks(FALSE) };
 
 
-    //
     for (int i = 0; i < PathDir.size(); i++)
     {
-
+        //
         std::string path = PathDir[i] + "*";
 
         std::wstring wstrPath = std::wstring(path.begin(), path.end());
@@ -21,6 +18,7 @@ void ListingAllFileAndDir()
 
         WIN32_FIND_DATAW data;
 
+        // Find First File
         HANDLE const hFind = FindFirstFileW((LPCWSTR)wcstrPath, &data);
 
         if (INVALID_HANDLE_VALUE != hFind)
@@ -40,7 +38,7 @@ void ListingAllFileAndDir()
 
                     std::string s = "None";
 
-
+                    // Checking an object to see if it is a folder if not then it is a file | All numeric values are taken from the MC. documentation.
                     if (data.dwFileAttributes == 16)
                     {
                         s = "DIR";

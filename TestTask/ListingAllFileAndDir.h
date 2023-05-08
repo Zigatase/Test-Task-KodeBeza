@@ -2,19 +2,13 @@
 #define LISTINGALLFILEANDDIR_H
 
 
-//
+// Includes
 #include "Include.h"
 #include <string>
 #include <vector>
 
 
-//
-class ListingAllFiles
-{
-};
-
-
-//
+// Functions
 void ListingAllFileAndDir();
 
 

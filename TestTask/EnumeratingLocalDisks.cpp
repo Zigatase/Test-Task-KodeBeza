@@ -1,11 +1,11 @@
 #include "EnumeratingLocalDisks.h"
 
 
-// --- Task #1 ---
 std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 {
     setlocale(LC_ALL, "rus");
 
+    //
     std::vector<std::string> Disk;
     std::vector<std::string> SysNet;
     std::vector<unsigned long long> Total;
@@ -19,6 +19,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
     unsigned long long lpTotalNumberOfBytes;
     unsigned long long lpTotalNumberOfFreeBytes;
 
+    // Getting Disks
     DWORD LogicalDisksLen{ GetLogicalDriveStringsA(sizeof(LogicalDisks), LogicalDisks) };
 
 
@@ -27,7 +28,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
     {
         if (i == 0)
         {
-            // Get Name Toms and File System Tom
+            // Getting Name Toms and File System Tom
             BOOL GetInfoDisk = GetVolumeInformationA(
                 LogicalDisks,
                 LogicalDisksName,
@@ -41,7 +42,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 
             if (GetInfoDisk == FALSE)
             {
-                std::cerr << "ERROR -> Failed to get disk information" << std::endl;
+                std::cerr << "ERROR -> Failed to Get Disk information" << std::endl;
                 return err;
             }
 
@@ -55,7 +56,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 
             if (GetDiskFreeSpace == FALSE)
             {
-                std::cerr << "ERROR -> Failed to get disk size information" << std::endl;
+                std::cerr << "ERROR -> Failed to Get Disk Free space" << std::endl;
                 return err;
             }
 
@@ -85,7 +86,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 
             if (GetVoluInfoDisk == FALSE)
             {
-                std::cerr << "ERROR -> Failed to get disk information" << std::endl;
+                std::cerr << "ERROR -> Failed to Get Disk information" << std::endl;
                 return err;
             }                
 
@@ -99,7 +100,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
 
             if (GetDiskFree == FALSE)
             {
-                std::cerr << "ERROR -> Failed to get disk size information" << std::endl;
+                std::cerr << "ERROR -> Failed to Get Disk Free space" << std::endl;
                 return err;
             }  
 
@@ -115,6 +116,7 @@ std::vector<std::string> EnumeratingLocalDisks(BOOL Cout)
         }
 
         i += 1;
+
     } while (i < LogicalDisksLen - 2);
 
     return Disk;

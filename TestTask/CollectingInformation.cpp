@@ -1,6 +1,6 @@
 #include "CollectingInformation.h"
 
-// --- Part #3 ---
+
 void CollectingInformation()
 {
     setlocale(LC_ALL, "rus");
@@ -15,7 +15,7 @@ void CollectingInformation()
     LPBYTE buffer;
     DWORD entries, total_entries;
 
-    //
+    // Getting UserName and PC Name
     GetUserNameW(username, &sizeUsername);
     GetComputerNameW(pcName, &sizePcName);
 
@@ -24,7 +24,7 @@ void CollectingInformation()
     printf("\n\tUserName: %S | PC Name: %S\n\n", username, pcName);
 
 
-    // Local Gr.
+    // Getting Local Groups
     printf("--- Local groups: \n");
 
     NetUserGetLocalGroups(NULL, username, 0, LG_INCLUDE_INDIRECT, &buffer, MAX_PREFERRED_LENGTH, &entries, &total_entries);
@@ -32,16 +32,19 @@ void CollectingInformation()
     LOCALGROUP_USERS_INFO_0* groups = (LOCALGROUP_USERS_INFO_0*)buffer;
     for (int i = 0; i < entries; i++)
         printf("\t%S\n", groups[i].lgrui0_name);
+
     NetApiBufferFree(buffer);
 
 
-    // Global Gr.
+    // Getting Global Groups
     printf("\n--- Globals Groups: \n");
 
     NetUserGetGroups(NULL, username, 0, &buffer, MAX_PREFERRED_LENGTH, &entries, &total_entries);
 
     GROUP_USERS_INFO_0* ggroups = (GROUP_USERS_INFO_0*)buffer;
+
     for (int i = 0; i < entries; i++)
         printf("\t%S\n", ggroups[i].grui0_name);
+
     NetApiBufferFree(buffer);
 }
