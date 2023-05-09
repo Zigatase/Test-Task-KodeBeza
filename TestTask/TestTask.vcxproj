@@ -139,7 +139,7 @@
   <ItemGroup>
     <ClInclude Include="CollectingInformation.h" />
     <ClInclude Include="EnumeratingLocalDisks.h" />
-    <ClInclude Include="Include.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="ListingAllFileAndDir.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

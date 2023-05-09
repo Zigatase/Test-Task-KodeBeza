@@ -1,5 +1,5 @@
-#ifndef  INCLUDE_H
-#define INCLUDE_H
+#ifndef  MAIN_H
+#define MAIN_H
 
 
 // Includes
@@ -12,4 +12,4 @@
 #include "CollectingInformation.h"
 
 
-#endif // INCLUDE_H
+#endif // MAIN_H

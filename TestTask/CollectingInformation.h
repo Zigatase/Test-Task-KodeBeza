@@ -2,8 +2,10 @@
 #define COLLECTINGINFORMATION_H
 
 // Includes
-#include "Include.h"
+#include "main.h"
+
 #pragma comment(lib, "netapi32.lib")
+
 #include <lm.h>
 
 // Functions
