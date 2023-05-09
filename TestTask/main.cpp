@@ -4,9 +4,13 @@
 // --- Main ---
 int main()
 {
+    setlocale(LC_ALL, "rus");
+
+
     std::string command;
 
     std::cout << "Using the /help command, you can get the entire list of commands.\n" << std::endl;
+
 
     while (true)
     {
